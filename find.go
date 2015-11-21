@@ -32,8 +32,7 @@ func Find(root string, expression *regexp.Regexp, atDepth int, ignoreDirectories
 			}
 		}
 
-		// Ignore paths too deep if atDepth is specified
-		if atDepth != -1 && info.IsDir() && strings.Count(path, "/") > slashOffset {
+		if checkDepth && info.IsDir() && strings.Count(path, "/") > slashOffset {
 			return filepath.SkipDir
 		}
 
