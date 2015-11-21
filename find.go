@@ -41,7 +41,6 @@ func Find(root string, expression *regexp.Regexp, atDepth int, ignoreDirectories
 		}
 
 		if info.Mode().IsRegular() {
-			fmt.Printf("testing %s\n", normalizedPath)
 			ok := expression.MatchString(info.Name())
 			if ok {
 				if checkDepth {
