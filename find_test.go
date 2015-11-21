@@ -6,9 +6,7 @@ import (
 )
 
 func TestFind(t *testing.T) {
-	re := regexp.MustCompile(`cert\.pem`)
-
-	arr, err := Find("testdata", re, 3, []string{".dot"})
+	arr, err := Find("testdata", regexp.MustCompile(`cert\.pem`), 2, []string{".dot"})
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -21,16 +19,14 @@ func TestFind(t *testing.T) {
 }
 
 func TestBadRoot(t *testing.T) {
-	re := regexp.MustCompile(`cert\.pem`)
-	_, err := Find("testdata/", re, 3, []string{".dot"})
+	_, err := Find("testdata/", regexp.MustCompile(`cert\.pem`), 2, []string{".dot"})
 	if err == nil {
 		t.Fatalf("Want an error because root ends in /")
 	}
 }
 
 func TestNoDepth(t *testing.T) {
-	re := regexp.MustCompile(`cert\.pem`)
-	arr, err := Find("testdata", re, -1, []string{".dot"})
+	arr, err := Find("testdata", regexp.MustCompile(`cert\.pem`), -1, []string{".dot"})
 	if err != nil {
 		t.Fatal(err)
 	}
